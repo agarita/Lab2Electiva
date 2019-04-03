@@ -74,38 +74,38 @@ public class MainActivity extends AppCompatActivity {
 
     public void lastSongClick(View view){
         if(numCancion>0) {
-            mediaPlayer.reset();
-            mediaPlayer.stop();
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0);
             mediaPlayer = playlist.get(--numCancion);
-            nombre.setText(nomPlaylist.get(numCancion));
             mediaPlayer.start();
+            nombre.setText(nomPlaylist.get(numCancion));
         }
         else {
-            mediaPlayer.reset();
             mediaPlayer.stop();
+            mediaPlayer.seekTo(0);
             mediaPlayer = playlist.get(9);
-            nombre.setText(nomPlaylist.get(9));
             mediaPlayer.start();
             numCancion = 9;
+            nombre.setText(nomPlaylist.get(9));
         }
         Log.i("INFO", String.format("Canción #%d: %s", numCancion+1, nomPlaylist.get(numCancion)));
     }
 
     public void nextSongClick(View view){
         if(numCancion<9) {
-            mediaPlayer.reset();
-            mediaPlayer.stop();
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0);
             mediaPlayer = playlist.get(++numCancion);
-            nombre.setText(nomPlaylist.get(numCancion));
             mediaPlayer.start();
+            nombre.setText(nomPlaylist.get(numCancion));
         }
         else {
-            mediaPlayer.reset();
-            mediaPlayer.stop();
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0);
             mediaPlayer = playlist.get(0);
-            nombre.setText(nomPlaylist.get(0));
             mediaPlayer.start();
             numCancion = 0;
+            nombre.setText(nomPlaylist.get(0));
         }
         Log.i("INFO", String.format("Canción #%d: %s", numCancion+1, nomPlaylist.get(numCancion)));
     }
@@ -122,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mediaPlayer.stop();
-                mediaPlayer.reset();
+                mediaPlayer.pause();
+                mediaPlayer.seekTo(0);
                 mediaPlayer = playlist.get(position);
                 nombre.setText(nomPlaylist.get(position));
                 mediaPlayer.start();
